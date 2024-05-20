@@ -1,4 +1,6 @@
 const orderModel=require('../model/order.model')
+const productModel=require('../model/product.model')
+
 
 const getUserProducts= async (req,res)=>{
     try{
@@ -15,6 +17,18 @@ const getUserProducts= async (req,res)=>{
     }
 }
 
+const saveProduct= async(req,res)=>{
+    try{
+       const productId=req.params.id
+        const product =await productModel.findOne({"productId" : productId})
+        
+    }
+    catch(error){
+
+    }
+}
+
 module.exports={
     getUserProducts,
+    saveProduct
 }

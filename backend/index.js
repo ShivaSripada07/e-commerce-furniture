@@ -6,6 +6,7 @@ const port=process.env.PORT
 const userRoutes=require('./routes/user.route')
 const productRoutes=require('./routes/product.route')
 const orderRoutes=require('./routes/order.route')
+const cartRoutes=require('./routes/cart.route')
 
 const mongoose=require('mongoose')
 mongoose.connect("mongodb://127.0.0.1:27017/furniture")
@@ -15,9 +16,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/furniture")
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
 
-app.use('/api/order',orderRoutes)
-app.use('/api/user',userRoutes)
-app.use('/api/admin/product',productRoutes)
+app.use('/order',orderRoutes)
+app.use('/user',userRoutes)
+app.use('/admin/product',productRoutes)
+app.use('/cart',cartRoutes)
 app.get('/',(req,res)=>{
     res.status(200).send("Home page")
 })
