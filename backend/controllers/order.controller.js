@@ -17,9 +17,23 @@ const getUserProducts= async (req,res)=>{
     }
 }
 
+const getOrders= async (req,res)=>{
+    try{
+        
+        const orders= await orderModel.find({})
+        if(orderProducts.length)
+            res.status(200).json(orders)
+        else
+            res.status(404).json({"message" : "orders not placed"})
+    }
+    catch(error){
+        res.status(404).send(error)
+    }
+}
+
 const saveProduct= async(req,res)=>{
     try{
-       const productId=req.params.id
+        const productId=req.params.id
         const product =await productModel.findOne({"productId" : productId})
         
         
@@ -31,5 +45,6 @@ const saveProduct= async(req,res)=>{
 
 module.exports={
     getUserProducts,
-    saveProduct
+    saveProduct,
+    getOrders
 }

@@ -3,35 +3,30 @@ const jwt=require('jsonwebtoken')
 require('dotenv').config()
 const secret=process.env.secret
 
-const handleRegister=async(req,res)=>{
-    //console.log(req.body)
+const saveUser=async(req,res)=>{
     const user=req.body
-    //console.log(user)
     try{
-        const existingUser=await userModel.findOne({"username" : user.username})
-        console.log(user)
+        const existingUser=await userModel.findOne({"email" : user.email})
         
         if(existingUser){
-            res.status(409).send({"message" : "username already exists !"})
+            res.status(409).send({"message" : "user already exists !"})
         }
         else{
             await userModel.create(user)
-            jwt.sign({user},secret,(err,token)=>{
-                if(!err)
-                    res.status(200).json(token)
-                else
-                    res.status(300).send(err)
-            })
-            //res.status(200).json(req.body)
+            // jwt.sign({user},secret,(err,token)=>{
+            //     if(!err)
+            //         res.status(200).json(token)
+            //     else
+            //         res.status(300).send(err)
+            // })
+            res.status(200).send("true")
         }
     }
     catch(error){
-        res.status(404).json(error)
+        res.status(404).send("false")
     }
 }
 
-
-
 module.exports={
-    handleRegister
+    saveUser
 }

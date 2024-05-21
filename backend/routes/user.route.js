@@ -1,10 +1,10 @@
 const express=require('express')
 const routes=express.Router()
 const {
-    handleRegister
+    saveUser
 }=require('../controllers/user.controller')
 
-routes.route('/login')
-    .post(handleRegister)
+routes.route('/')
+    .post(saveUser)
 
-    module.exports=routes
+module.exports=routes

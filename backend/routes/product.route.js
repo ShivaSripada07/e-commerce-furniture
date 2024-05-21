@@ -9,12 +9,13 @@ const {
     productEditSave
 }=require('../controllers/product.controller')
 
-routes.route('/')
-    .get(getProducts)
-    .post(productSave)
-    .patch(productEditSave)
-routes.route('/:id')
-    .delete(productDelete)
-    .get(productEditData)
+const {getOrders}=require('../controllers/order.controller')
+
+routes.get('/',getProducts)
+routes.post('/addProduct',productSave)
+routes.delete('/delete/:id',productDelete)
+routes.patch('/productEdit/:id',productEditSave)
+routes.get('/productEdit/:id',productEditData)
+routes.get('/orders',getOrders)
 
 module.exports=routes
