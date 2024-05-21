@@ -7,7 +7,7 @@ const getUserProducts= async (req,res)=>{
         const userId=req.params.id;
         console.log(userId)
         const orderProducts= await orderModel.find({"userId" : userId})
-        if(orderProducts.length)
+        if(orderProducts.length>0)
             res.status(200).json(orderProducts)
         else
             res.status(404).json({"message" : "orders not placed"})
@@ -21,7 +21,7 @@ const getOrders= async (req,res)=>{
     try{
         
         const orders= await orderModel.find({})
-        if(orderProducts.length)
+        if(orderProducts.length>0)
             res.status(200).json(orders)
         else
             res.status(404).json({"message" : "orders not placed"})

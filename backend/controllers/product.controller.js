@@ -4,7 +4,8 @@ const getProducts=async(req,res)=>{
     try{
         const products= await productModel.find()
         console.log(products)
-        if(products.length){
+        if(products.length>0)
+        {
             res.status(200).json(products)
         }
         else{

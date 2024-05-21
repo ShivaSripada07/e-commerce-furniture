@@ -2,9 +2,9 @@ const cartModel=require('../model/cart.model')
 
 const showCart=async(req,res)=>{
     try{
-        const cartItems= await cartModel.find()
+        const cartItems= await cartModel.find({})
         console.log(cartItems)
-        if(cartItems.length){
+        if(cartItems.length>0){
             res.status(200).json(cartItems)
         }
         else{
