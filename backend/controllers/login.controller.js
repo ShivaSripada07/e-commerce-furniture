@@ -1,16 +1,25 @@
 const loginModel=require('../model/login.model')
 const userModel=require('../model/user.model')
+const jwt=require('jsonwebtoken')
+require('dotenv')
+const secret=process.env.SECRET
 
 const checkUser=async(req,res)=>{
     try{
         const {email,password}=req.body;
         const user=await userModel.findOne({"email" : email})
-        console.log(user)
-        if(user){
+        //console.log(user)
+        if(user && user.password===password){
+
             const existingUser= await loginModel.findOne({"email" : email})
             if(!existingUser)
                 loginModel.create({"email": email,"password" : password})
-            res.status(200).send(true)
+            jwt.sign({user},secret,(err,token)=>{
+                if(!err)
+                    res.status(200).json({token})
+                else
+                    res.status(404).send(false)
+            })
         }
         else{
             res.status(404).send(false)
@@ -22,4 +31,6 @@ const checkUser=async(req,res)=>{
     }
 }
 
-module.exports={checkUser}
+module.exports={
+    checkUser
+}

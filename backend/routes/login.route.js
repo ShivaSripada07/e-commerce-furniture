@@ -1,6 +1,7 @@
 const express=require('express')
 const routes=express.Router();
-const {checkUser}=require('../controllers/login.controller')
+
+const {checkUser}=require('../controllers/login.controller');
 
 routes.route('/')
     .post(checkUser)
