@@ -5,10 +5,10 @@ const secret=process.env.SECRET
 const verifyToken= async (req,res,next)=>{
     const token=req.headers.authorization.split(" ")[1]
     //console.log(req.headers)
-    console.log(token)
+    //console.log(token)
     jwt.verify(token,secret,(err,data)=>{
         
-        console.log(err)
+        //console.log(err)
         if(!err){
             req.user=data.user
             next()

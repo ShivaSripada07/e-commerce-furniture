@@ -29,7 +29,7 @@ app.use(express.urlencoded({extended : true}))
 app.use('/order',verifyToken,orderRoutes)
 app.use('/signup',userRoutes)
 app.use('/home',homeRoutes)
-app.use('/cart',cartRoutes)
+app.use('/cart',verifyToken,cartRoutes)
 app.use('/login',loginRoutes)
 app.use('/admin',verifyToken,isAdmin,productRoutes)
 app.get('/',(req,res)=>{

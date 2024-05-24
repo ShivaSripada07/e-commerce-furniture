@@ -22,14 +22,14 @@ const userSchema=mongoose.Schema({
     },
     active :Boolean,
     role :String,
-    cart :{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : 'cartModel',
-    },
-    ordersList :[{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : orderModel,
-    }]
+    // cart :{
+    //     type : mongoose.Schema.Types.ObjectId,
+    //     ref : 'cartModel',
+    // },
+    // ordersList :[{
+    //     type : mongoose.Schema.Types.ObjectId,
+    //     ref : orderModel,
+    // }]
 });
 
 const userModel=mongoose.model("user",userSchema)
