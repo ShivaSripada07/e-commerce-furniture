@@ -3,7 +3,7 @@ require('dotenv')
 const secret=process.env.SECRET
 
 const verifyToken= async (req,res,next)=>{
-    const token=req.headers.authorization.split(" ")[1]
+    try{const token=req.headers.authorization.split(" ")[1]
     //console.log(req.headers)
     //console.log(token)
     jwt.verify(token,secret,(err,data)=>{
@@ -15,7 +15,10 @@ const verifyToken= async (req,res,next)=>{
         }
         else
             res.status(300).json({"message" : "Not authorized"})
-    })
+    })}
+    catch(error){
+        res.status(404).json({"message" : "unable to verify"})
+    }
 }
 
 const isAdmin=(req,res,next)=>{

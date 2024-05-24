@@ -5,7 +5,7 @@ const showCart=async(req,res)=>{
     try{
         const userId=req.user.username
         const cartItems= await cartModel.find({"userId" : userId})
-        console.log(cartItems)
+        //console.log(cartItems)
         if(cartItems.length>0){
             res.status(200).json(cartItems)
         }
@@ -27,7 +27,7 @@ const addToCart= async (req,res)=>{
         //console.log(cartItemId,quantity,userId)
         const product= await productModel.findOne({"productId" : cartItemId})
         const productName=product.productName
-        const price=parseInt(product.price) * parseInt(quantity)
+        const price=product.price
         console.log(product.productName)
 
         await cartModel.create({
